@@ -2,7 +2,8 @@
     "project": {
         "name": "cannon",
         "description": "A lightweight 3D physics engine written in JavaScript.",
-        "version": "0.6.1"
+        "version": "0.6.2",
+        "url": "https://github.com/schteppe/cannon.js"
     },
     "files": {
         "src/collision/AABB.js": {
@@ -6267,6 +6268,26 @@
         {
             "file": "src/objects/Body.js",
             "line": 332,
+            "description": "Dispatched after two bodies collide. This event is dispatched on each\nof the two bodies involved in the collision.",
+            "itemtype": "event",
+            "name": "collide",
+            "params": [
+                {
+                    "name": "body",
+                    "description": "The body that was involved in the collision.",
+                    "type": "Body"
+                },
+                {
+                    "name": "contact",
+                    "description": "The details of the collision.",
+                    "type": "ContactEquation"
+                }
+            ],
+            "class": "Body"
+        },
+        {
+            "file": "src/objects/Body.js",
+            "line": 341,
             "description": "A dynamic body is fully simulated. Can be moved manually by the user, but normally they move according to forces. A dynamic body can collide with all body types. A dynamic body always has finite, non-zero mass.",
             "static": 1,
             "itemtype": "property",
@@ -6276,7 +6297,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 340,
+            "line": 349,
             "description": "A static body does not move during simulation and behaves as if it has infinite mass. Static bodies can be moved manually by setting the position of the body. The velocity of a static body is always zero. Static bodies do not collide with other static or kinematic bodies.",
             "static": 1,
             "itemtype": "property",
@@ -6286,7 +6307,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 348,
+            "line": 357,
             "description": "A kinematic body moves under simulation according to its velocity. They do not respond to forces. They can be moved manually, but normally a kinematic body is moved by setting its velocity. A kinematic body behaves as if it has infinite mass. Kinematic bodies do not collide with other static or kinematic bodies.",
             "static": 1,
             "itemtype": "property",
@@ -6296,7 +6317,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 358,
+            "line": 367,
             "static": 1,
             "itemtype": "property",
             "name": "AWAKE",
@@ -6305,7 +6326,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 365,
+            "line": 374,
             "static": 1,
             "itemtype": "property",
             "name": "SLEEPY",
@@ -6314,7 +6335,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 372,
+            "line": 381,
             "static": 1,
             "itemtype": "property",
             "name": "SLEEPING",
@@ -6323,7 +6344,15 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 381,
+            "line": 390,
+            "description": "Dispatched after a sleeping body has woken up.",
+            "itemtype": "event",
+            "name": "wakeup",
+            "class": "Body"
+        },
+        {
+            "file": "src/objects/Body.js",
+            "line": 398,
             "description": "Wake the body up.",
             "itemtype": "method",
             "name": "wakeUp",
@@ -6331,7 +6360,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 393,
+            "line": 410,
             "description": "Force body sleep",
             "itemtype": "method",
             "name": "sleep",
@@ -6339,7 +6368,23 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 411,
+            "line": 420,
+            "description": "Dispatched after a body has gone in to the sleepy state.",
+            "itemtype": "event",
+            "name": "sleepy",
+            "class": "Body"
+        },
+        {
+            "file": "src/objects/Body.js",
+            "line": 428,
+            "description": "Dispatched after a body has fallen asleep.",
+            "itemtype": "event",
+            "name": "sleep",
+            "class": "Body"
+        },
+        {
+            "file": "src/objects/Body.js",
+            "line": 436,
             "description": "Called every timestep to update internal sleep timer and change sleep state if needed.",
             "itemtype": "method",
             "name": "sleepTick",
@@ -6354,7 +6399,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 434,
+            "line": 459,
             "description": "If the body is sleeping, it should be immovable / have infinite mass during solve. We solve it by having a separate \"solve mass\".",
             "itemtype": "method",
             "name": "updateSolveMassProperties",
@@ -6362,7 +6407,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 450,
+            "line": 475,
             "description": "Convert a world point to local body frame.",
             "itemtype": "method",
             "name": "pointToLocalFrame",
@@ -6386,7 +6431,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 464,
+            "line": 489,
             "description": "Convert a world vector to local body frame.",
             "itemtype": "method",
             "name": "vectorToLocalFrame",
@@ -6410,7 +6455,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 477,
+            "line": 502,
             "description": "Convert a local body point to world frame.",
             "itemtype": "method",
             "name": "pointToWorldFrame",
@@ -6434,7 +6479,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 491,
+            "line": 516,
             "description": "Convert a local body point to world frame.",
             "itemtype": "method",
             "name": "vectorToWorldFrame",
@@ -6458,7 +6503,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 507,
+            "line": 532,
             "description": "Add a shape to the body with a local offset and orientation.",
             "itemtype": "method",
             "name": "addShape",
@@ -6487,7 +6532,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 537,
+            "line": 562,
             "description": "Update the bounding radius of the body. Should be done if any of the shapes are changed.",
             "itemtype": "method",
             "name": "updateBoundingRadius",
@@ -6495,7 +6540,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 562,
+            "line": 587,
             "description": "Updates the .aabb",
             "itemtype": "method",
             "name": "computeAABB",
@@ -6506,7 +6551,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 608,
+            "line": 633,
             "description": "Update .inertiaWorld and .invInertiaWorld",
             "itemtype": "method",
             "name": "updateInertiaWorld",
@@ -6514,7 +6559,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 637,
+            "line": 662,
             "description": "Apply force to a world point. This could for example be a point on the Body surface. Applying force this way will add to Body.force and Body.torque.",
             "itemtype": "method",
             "name": "applyForce",
@@ -6534,7 +6579,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 665,
+            "line": 690,
             "description": "Apply force to a local point in the body.",
             "itemtype": "method",
             "name": "applyLocalForce",
@@ -6554,7 +6599,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 688,
+            "line": 713,
             "description": "Apply impulse to a world point. This could for example be a point on the Body surface. An impulse is a force added to a body during a short period of time (impulse = force * time). Impulses will be added to Body.velocity and Body.angularVelocity.",
             "itemtype": "method",
             "name": "applyImpulse",
@@ -6574,7 +6619,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 729,
+            "line": 754,
             "description": "Apply locally-defined impulse to a local point in the body.",
             "itemtype": "method",
             "name": "applyLocalImpulse",
@@ -6594,7 +6639,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 754,
+            "line": 779,
             "description": "Should be called whenever you change the body shape or mass.",
             "itemtype": "method",
             "name": "updateMassProperties",
@@ -6602,7 +6647,7 @@
         },
         {
             "file": "src/objects/Body.js",
-            "line": 782,
+            "line": 807,
             "description": "Get world velocity of a point in the body.",
             "itemtype": "method",
             "name": "getVelocityAtWorldPoint",
@@ -10395,7 +10440,37 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 206,
+            "line": 189,
+            "description": "Dispatched after a body has been added to the world.",
+            "itemtype": "event",
+            "name": "addBody",
+            "params": [
+                {
+                    "name": "body",
+                    "description": "The body that has been added to the world.",
+                    "type": "Body"
+                }
+            ],
+            "class": "World"
+        },
+        {
+            "file": "src/world/World.js",
+            "line": 199,
+            "description": "Dispatched after a body has been removed from the world.",
+            "itemtype": "event",
+            "name": "removeBody",
+            "params": [
+                {
+                    "name": "body",
+                    "description": "The body that has been removed from the world.",
+                    "type": "Body"
+                }
+            ],
+            "class": "World"
+        },
+        {
+            "file": "src/world/World.js",
+            "line": 216,
             "description": "Get the contact material between materials m1 and m2",
             "itemtype": "method",
             "name": "getContactMaterial",
@@ -10419,7 +10494,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 217,
+            "line": 227,
             "description": "Get number of objects in the world.",
             "itemtype": "method",
             "name": "numObjects",
@@ -10432,7 +10507,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 227,
+            "line": 237,
             "description": "Store old collision state info",
             "itemtype": "method",
             "name": "collisionMatrixTick",
@@ -10440,7 +10515,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 238,
+            "line": 248,
             "description": "Add a rigid body to the simulation.",
             "itemtype": "method",
             "name": "add",
@@ -10462,7 +10537,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 265,
+            "line": 275,
             "description": "Add a constraint to the simulation.",
             "itemtype": "method",
             "name": "addConstraint",
@@ -10477,7 +10552,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 274,
+            "line": 284,
             "description": "Removes a constraint",
             "itemtype": "method",
             "name": "removeConstraint",
@@ -10492,7 +10567,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 286,
+            "line": 296,
             "description": "Raycast test",
             "itemtype": "method",
             "name": "rayTest",
@@ -10519,7 +10594,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 308,
+            "line": 318,
             "description": "Ray cast against all bodies. The provided callback will be executed for each hit with a RaycastResult as single argument.",
             "itemtype": "method",
             "name": "raycastAll",
@@ -10583,7 +10658,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 329,
+            "line": 339,
             "description": "Ray cast, and stop at the first result. Note that the order is random - but the method is fast.",
             "itemtype": "method",
             "name": "raycastAny",
@@ -10647,7 +10722,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 350,
+            "line": 360,
             "description": "Ray cast, and return information of the closest hit.",
             "itemtype": "method",
             "name": "raycastClosest",
@@ -10711,7 +10786,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 371,
+            "line": 381,
             "description": "Remove a rigid body from the simulation.",
             "itemtype": "method",
             "name": "remove",
@@ -10728,7 +10803,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 396,
+            "line": 406,
             "description": "Remove a rigid body from the simulation.",
             "itemtype": "method",
             "name": "removeBody",
@@ -10743,7 +10818,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 403,
+            "line": 413,
             "description": "Adds a material to the World.",
             "itemtype": "method",
             "name": "addMaterial",
@@ -10761,7 +10836,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 413,
+            "line": 423,
             "description": "Adds a contact material to the World",
             "itemtype": "method",
             "name": "addContactMaterial",
@@ -10776,7 +10851,7 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 443,
+            "line": 453,
             "description": "Step the physics world forward in time.\n\nThere are two modes. The simple mode is fixed timestepping without interpolation. In this case you only use the first argument. The second case uses interpolation. In that you also provide the time since the function was last used, as well as the maximum fixed timesteps to take.",
             "itemtype": "method",
             "name": "step",
@@ -10810,22 +10885,23 @@
         },
         {
             "file": "src/world/World.js",
-            "line": 517,
-            "description": "Step the simulation",
-            "itemtype": "method",
-            "name": "step",
-            "params": [
-                {
-                    "name": "dt",
-                    "description": "",
-                    "type": "Number"
-                }
-            ],
+            "line": 528,
+            "description": "Dispatched after the world has stepped forward in time.",
+            "itemtype": "event",
+            "name": "postStep",
             "class": "World"
         },
         {
             "file": "src/world/World.js",
-            "line": 936,
+            "line": 533,
+            "description": "Dispatched before the world steps forward in time.",
+            "itemtype": "event",
+            "name": "preStep",
+            "class": "World"
+        },
+        {
+            "file": "src/world/World.js",
+            "line": 950,
             "description": "Sets all body forces in the world to zero.",
             "itemtype": "method",
             "name": "clearForces",
